@@ -2,6 +2,9 @@
   "name": "chatgpt-next-web",
   "version": "1.9.3",
   "private": false,
+  "engines": {
+    "node": "^14.18.0 || ^16.14.0 || >=18.0.0"
+  },
   "license": "Anti 996",
   "scripts": {
     "dev": "yarn fetch && next dev",
