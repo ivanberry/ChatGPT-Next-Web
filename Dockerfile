@@ -18,6 +18,11 @@ RUN apk update && apk add --no-cache git
 ENV OPENAI_API_KEY=""
 ENV CODE=""
 
+ENV NEXT_PUBLIC_SIDEBAR_TITLE=${SIDEBAR_TITLE}
+ENV NEXT_PUBLIC_DOCUMENT_TITLE=${DOCUMENT_TITLE}
+ENV NEXT_PUBLIC_SHOP_URL=${SHOP_URL}
+ENV SHOW_VERSION=''
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
