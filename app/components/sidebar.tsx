@@ -10,7 +10,7 @@ import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
 import PluginIcon from "../icons/plugin.svg";
-
+import { BsShop } from "react-icons/bs";
 import Locale from "../locales";
 
 import { useAppConfig, useChatStore } from "../store";
@@ -175,11 +175,20 @@ export function SideBar(props: { className?: string }) {
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
           </div>
-          <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank">
-              <IconButton icon={<GithubIcon />} shadow />
-            </a>
-          </div>
+
+          {process.env.NEXT_PUBLIC_SHOP_URL ? (
+            <div className={styles["sidebar-action"]}>
+              <a href={process.env.NEXT_PUBLIC_SHOP_URL} target="_blank">
+                <IconButton icon={<BsShop />} shadow />
+              </a>
+            </div>
+          ) : (
+            <div className={styles["sidebar-action"]}>
+              <a href={REPO_URL} target="_blank">
+                <IconButton icon={<GithubIcon />} shadow />
+              </a>
+            </div>
+          )}
         </div>
         <div>
           <IconButton
