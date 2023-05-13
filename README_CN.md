@@ -98,6 +98,14 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 如果你不想让用户使用 GPT-4，将此环境变量设置为 1 即可。
 
+### `NEXT_PUBLIC_SIDEBAR_TITLE` (可选)
+
+自定义侧边栏 title
+
+### `NEXT_PUBLIC_SIDEBAR_TITLE` (可选)
+
+自定义应用名称,表现为页面 tab 名称
+
 ## 开发
 
 > 强烈不建议在本地进行开发或者部署，由于一些技术原因，很难在本地配置好 OpenAI API 代理，除非你能保证可以直连 OpenAI 服务器。
