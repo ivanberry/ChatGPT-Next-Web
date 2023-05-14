@@ -59,6 +59,7 @@ import { Avatar } from "./emoji";
 import { MaskAvatar, MaskConfig } from "./mask";
 import { useMaskStore } from "../store/mask";
 import { useCommand } from "../command";
+import { requestAzureTTS } from "../api/common";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -562,7 +563,8 @@ export function Chat() {
 
   const onRead = (content: string) => {
     //TODO: read the current message with azure tts
-    speak({ text: content });
+    // speak({ text: content });
+    requestAzureTTS("Hi, What is your name");
   };
 
   const onReadCanel = () => {
