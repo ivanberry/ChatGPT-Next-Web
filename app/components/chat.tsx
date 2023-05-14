@@ -415,6 +415,8 @@ export function Chat() {
   const navigate = useNavigate();
   const { speak, speaking, supported, cancel } = useSpeechSynthesis();
 
+  console.log("[SpeechRecognition] is supported: ", supported);
+
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 100;
     setHitBottom(isTouchBottom);
