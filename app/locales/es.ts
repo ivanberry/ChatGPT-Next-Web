@@ -21,6 +21,7 @@ const es: LocaleType = {
       Retry: "Reintentar",
       Delete: "Delete",
       Read: "Read",
+      Cancel: "Cancel",
     },
     Rename: "Renombrar chat",
     Typing: "Escribiendo...",

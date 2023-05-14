@@ -42,3 +42,39 @@ export async function requestOpenai(req: NextRequest) {
     body: req.body,
   });
 }
+
+/**
+ * handle text to speach
+ * @param req text to speach
+ */
+export async function requestAzureTTS(text: string) {
+  // @ts-ignore
+  const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(
+    "api_key",
+    "service_Region",
+  );
+  speechConfig.speechSynthesisLanguage = "en-US";
+  speechConfig.speechSynthesisVoiceName = "en-US-Guy24kRUS";
+
+  // @ts-ignore
+  const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
+  // @ts-ignore
+  const synthesizer = new SpeechSDK.SpeechSynthesizer(
+    speechConfig,
+    audioConfig,
+  );
+
+  synthesizer.speakTextAsync(
+    text,
+    (result: any) => {
+      if (result) {
+        console.log("Speech synthesis result:", result);
+      }
+      synthesizer.close();
+    },
+    (error: any) => {
+      console.error("Error during speech synthesis:", error);
+      synthesizer.close();
+    },
+  );
+}

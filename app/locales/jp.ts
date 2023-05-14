@@ -21,6 +21,7 @@ const jp: LocaleType = {
       Retry: "リトライ",
       Delete: "Delete",
       Read: "読む",
+      Cancel: "キャンセル",
     },
     Rename: "チャットの名前を変更",
     Typing: "入力中…",

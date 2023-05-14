@@ -20,6 +20,7 @@ const cn = {
       Retry: "重试",
       Delete: "删除",
       Read: "朗读",
+      Cancel: "停止朗读",
     },
     Rename: "重命名对话",
     Typing: "正在输入…",

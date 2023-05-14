@@ -9,3 +9,9 @@ declare module "*.scss" {
 }
 
 declare module "*.svg";
+
+declare module SpeechSDK {}
+
+declare module "react-speech-kit" {
+  export function useSpeechSynthesis(): any;
+}

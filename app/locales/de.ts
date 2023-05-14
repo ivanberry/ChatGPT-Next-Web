@@ -21,6 +21,7 @@ const de: LocaleType = {
       Retry: "Wiederholen",
       Delete: "Delete",
       Read: "Lesen",
+      Cancel: "Stornieren",
     },
     Rename: "Chat umbenennen",
     Typing: "Tippen...",

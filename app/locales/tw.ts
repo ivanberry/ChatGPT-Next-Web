@@ -20,6 +20,7 @@ const tw: LocaleType = {
       Retry: "重試",
       Delete: "刪除",
       Read: "讀取",
+      Cancel: "取消",
     },
     Rename: "重命名對話",
     Typing: "正在輸入…",

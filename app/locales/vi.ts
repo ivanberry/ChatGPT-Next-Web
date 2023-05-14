@@ -21,6 +21,7 @@ const vi: LocaleType = {
       Retry: "Thử lại",
       Delete: "Xóa",
       Read: "Đọc",
+      Cancel: "Hủy bỏ",
     },
     Rename: "Đổi tên",
     Typing: "Đang nhập…",

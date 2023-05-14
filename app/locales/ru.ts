@@ -21,6 +21,7 @@ const ru: LocaleType = {
       Retry: "Повторить",
       Delete: "Удалить",
       Read: "Читать",
+      Cancel: "Отмена",
     },
     Rename: "Переименовать чат",
     Typing: "Печатает…",

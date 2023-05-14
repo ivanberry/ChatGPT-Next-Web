@@ -21,6 +21,7 @@ const tr: LocaleType = {
       Retry: "Tekrar Dene",
       Delete: "Delete",
       Read: "Oku",
+      Cancel: "İptal etmek",
     },
     Rename: "Sohbeti Yeniden Adlandır",
     Typing: "Yazıyor…",

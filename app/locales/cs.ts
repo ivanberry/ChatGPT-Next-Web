@@ -21,6 +21,7 @@ const cs: LocaleType = {
       Retry: "Zopakovat",
       Delete: "Smazat",
       Read: "Read",
+      Cancel: "Cancel",
     },
     Rename: "Přejmenovat chat",
     Typing: "Píše...",
