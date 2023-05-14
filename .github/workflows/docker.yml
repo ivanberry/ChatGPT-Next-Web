@@ -44,7 +44,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
-            SIDEBAR_TITLE=${vars.SIDEBAR_TITLE}
-            DOCUMENT_TITLE=${vars.DOCUMENT_TITLE}
-            SHOP_URL=${vars.SHOP_URL}
+            SIDEBAR_TITLE=${{ vars.SIDEBAR_TITLE }}
+            DOCUMENT_TITLE=${{ vars.DOCUMENT_TITLE }}
+            SHOP_URL=${{ vars.SHOP_URL }}
             SHOW_VERSION=''
