@@ -42,6 +42,7 @@ import {
 } from "../utils";
 
 import dynamic from "next/dynamic";
+import { useSpeechSynthesis } from "react-speech-kit";
 
 import { ControllerPool } from "../requests";
 import { Prompt, usePromptStore } from "../store/prompt";
@@ -412,6 +413,7 @@ export function Chat() {
   const [hitBottom, setHitBottom] = useState(true);
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
+  const { speak, speaking, supported, cancel } = useSpeechSynthesis();
 
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 100;
@@ -527,6 +529,8 @@ export function Chat() {
       }
     }
 
+    console.log("last user message: ", session.messages);
+
     return lastUserMessageIndex;
   };
 
@@ -552,6 +556,15 @@ export function Chat() {
     deleteMessage(userIndex);
     chatStore.onUserInput(content).then(() => setIsLoading(false));
     inputRef.current?.focus();
+  };
+
+  const onRead = (content: string) => {
+    //TODO: read the current message with azure tts
+    speak({ text: content });
+  };
+
+  const onReadCanel = () => {
+    cancel();
   };
 
   const context: RenderMessage[] = session.mask.context.slice();
@@ -747,6 +760,23 @@ export function Chat() {
                           >
                             {Locale.Chat.Actions.Retry}
                           </div>
+                          {supported ? (
+                            speaking ? (
+                              <div
+                                className={styles["chat-message-top-action"]}
+                                onClick={() => onReadCanel()}
+                              >
+                                {Locale.Chat.Actions.Cancel}
+                              </div>
+                            ) : (
+                              <div
+                                className={styles["chat-message-top-action"]}
+                                onClick={() => onRead(message.content)}
+                              >
+                                {Locale.Chat.Actions.Read}
+                              </div>
+                            )
+                          ) : null}
                         </>
                       )}
 
