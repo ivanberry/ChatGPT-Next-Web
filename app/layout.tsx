@@ -40,6 +40,10 @@ export default function RootLayout({
           href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap"
         ></link>
         <script src="/serviceWorkerRegister.js" defer></script>
+        <script
+          // src="https://cdn.jsdelivr.net/npm/microsoft-cognitiveservices-speech-sdk@latest/distrib/browser/microsoft.cognitiveservices.speech.sdk.bundle-min.js"
+          defer
+        ></script>
       </head>
       <body>{children}</body>
     </html>
