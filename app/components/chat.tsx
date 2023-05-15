@@ -564,7 +564,7 @@ export function Chat() {
   const onRead = (content: string) => {
     //TODO: read the current message with azure tts
     // speak({ text: content });
-    requestAzureTTS("Hi, What is your name");
+    requestAzureTTS(content);
   };
 
   const onReadCanel = () => {
