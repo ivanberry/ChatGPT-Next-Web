@@ -60,6 +60,7 @@ import { MaskAvatar, MaskConfig } from "./mask";
 import { useMaskStore } from "../store/mask";
 import { useCommand } from "../command";
 import { requestAzureTTS } from "../api/common";
+import useAzureTTS from "../hooks/azureTTS";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -414,9 +415,9 @@ export function Chat() {
   const [hitBottom, setHitBottom] = useState(true);
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
-  const { speak, speaking, supported, cancel } = useSpeechSynthesis();
-
-  console.log("[SpeechRecognition] is supported: ", supported);
+  const { speaking, supported, cancel } = useSpeechSynthesis();
+  const [player, speak] = useAzureTTS();
+  console.log("player: ", player);
 
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 100;
@@ -562,13 +563,16 @@ export function Chat() {
   };
 
   const onRead = (content: string) => {
-    //TODO: read the current message with azure tts
-    // speak({ text: content });
-    requestAzureTTS(content);
+    // @ts-ignore
+    speak(content);
   };
 
   const onReadCanel = () => {
-    cancel();
+    console.log("player: ", player);
+    // @ts-ignore
+    player.pause();
+
+    // cancel();
   };
 
   const context: RenderMessage[] = session.mask.context.slice();
@@ -764,23 +768,18 @@ export function Chat() {
                           >
                             {Locale.Chat.Actions.Retry}
                           </div>
-                          {supported ? (
-                            speaking ? (
-                              <div
-                                className={styles["chat-message-top-action"]}
-                                onClick={() => onReadCanel()}
-                              >
-                                {Locale.Chat.Actions.Cancel}
-                              </div>
-                            ) : (
-                              <div
-                                className={styles["chat-message-top-action"]}
-                                onClick={() => onRead(message.content)}
-                              >
-                                {Locale.Chat.Actions.Read}
-                              </div>
-                            )
-                          ) : null}
+                          <div
+                            className={styles["chat-message-top-action"]}
+                            onClick={() => onReadCanel()}
+                          >
+                            {Locale.Chat.Actions.Cancel}
+                          </div>
+                          <div
+                            className={styles["chat-message-top-action"]}
+                            onClick={() => onRead(message.content)}
+                          >
+                            {Locale.Chat.Actions.Read}
+                          </div>
                         </>
                       )}
 

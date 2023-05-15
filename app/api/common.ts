@@ -67,8 +67,6 @@ export async function requestAzureTTS(text: string) {
     audioConfig,
   );
 
-  // console.log("synthesizer: ", await synthesizer.getVoicesAsync());
-
   synthesizer.speakSsmlAsync(
     `<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">
       <voice name="en-US-NancyNeural"><s /><mstts:express-as style="Default">${text}</mstts:express-as><s /></voice>
