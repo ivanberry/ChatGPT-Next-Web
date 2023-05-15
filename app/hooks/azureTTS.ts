@@ -28,7 +28,7 @@ export default function useAzureTTS() {
   };
 
   // @ts-ignore
-  const audioConfig = AudioConfig.fromDefaultSpeakerOutput(player);
+  const audioConfig = AudioConfig.fromSpeakerOutput(player);
   const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
 
   function speak(text: string) {
