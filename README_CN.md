@@ -102,15 +102,20 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 自定义侧边栏 title
 
-### `NEXT_PUBLIC_SIDEBAR_TITLE` (可选)
+### `NEXT_PUBLIC_DOCUMENT_TITLE` (可选)
 
 自定义应用名称,表现为页面 tab 名称
 
-### `NEXT_PUBLIC_SIDEBAR_TITLE` (可选)
+### `NEXT_PUBLIC_SHOP_URL` (可选)
 
-NEXT_PUBLIC_SHOW_VERSION
+### NEXT_PUBLIC_SHOW_VERSION
 
 是否显示版本检测,不传或为空时不显示
+
+### NEXT_PUBLIC_SPEECH_KEY/NEXT_PUBLIC_SPEECH_REGION
+
+Azure Speech service key and regin
+
 
 ## 开发
 
