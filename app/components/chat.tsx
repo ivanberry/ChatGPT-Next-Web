@@ -61,6 +61,7 @@ import { useMaskStore } from "../store/mask";
 import { useCommand } from "../command";
 import { requestAzureTTS } from "../api/common";
 import useAzureTTS from "../hooks/azureTTS";
+import useReadStore from "../store/read";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -417,7 +418,8 @@ export function Chat() {
   const navigate = useNavigate();
   const { speaking, supported, cancel } = useSpeechSynthesis();
   const [player, speak] = useAzureTTS();
-  console.log("player: ", player);
+  const readStore = useReadStore();
+  // console.log("player: ", readStore);
 
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 100;
