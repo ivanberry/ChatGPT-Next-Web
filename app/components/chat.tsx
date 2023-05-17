@@ -417,9 +417,12 @@ export function Chat() {
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
   const { speaking, supported, cancel } = useSpeechSynthesis();
-  const [player, speak] = useAzureTTS();
+  const [ttsPlayer, speak] = useAzureTTS();
   const readStore = useReadStore();
-  // console.log("player: ", readStore);
+  console.log("[read store: ]", readStore);
+  const { read, player } = readStore;
+
+  console.log("[read, player]: ", read, player);
 
   const onChatBodyScroll = (e: HTMLElement) => {
     const isTouchBottom = e.scrollTop + e.clientHeight >= e.scrollHeight - 100;
@@ -566,13 +569,14 @@ export function Chat() {
 
   const onRead = (content: string) => {
     // @ts-ignore
-    speak(content);
+    // speak(content);
+    read(content);
   };
 
   const onReadCanel = () => {
-    console.log("player: ", player);
+    console.log("ttsPlayer: ", ttsPlayer);
     // @ts-ignore
-    player.pause();
+    ttsPlayer.pause();
 
     // cancel();
   };

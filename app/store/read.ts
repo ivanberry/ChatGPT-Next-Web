@@ -18,11 +18,11 @@ function read(text: string, synthesizer: SpeechSynthesizer) {
       if (result) {
         console.log("Speech synthesis result:", result.privErrorDetails);
       }
-      synthesizer.close();
+      // synthesizer.close();
     },
     (error: any) => {
       console.error("Error during speech synthesis:", error);
-      synthesizer.close();
+      // synthesizer.close();
     },
   );
 }
@@ -31,7 +31,7 @@ function read(text: string, synthesizer: SpeechSynthesizer) {
  * handle text to speach
  * @param req text to speach
  */
-function createSynthesizer(player: SpeakerAudioDestination) {
+function createSynthesizer(player: SpeakerAudioDestination): SpeechSynthesizer {
   // @ts-ignore
   const speechConfig = SpeechConfig.fromSubscription(
     process.env.NEXT_PUBLIC_SPEECH_KEY as string,
@@ -58,28 +58,33 @@ function createAudio(): SpeakerAudioDestination {
   return player;
 }
 
+// Notice the interface details
 interface ReadStore {
   reading: boolean;
-  getSynthesizer: SpeechSynthesizer;
-  getPlayer: () => SpeakerAudioDestination;
+  getSynthesizer: Function;
+  // getPlayer: () => SpeakerAudioDestination;
   read: Function;
   player: SpeakerAudioDestination;
+  synthesis: any;
 }
 
 const useReadStore = create<ReadStore>()(
   persist(
     (set, get) => {
-      console.log("get: ", get);
-      console.log("set: ", set);
+      const player = createAudio();
+      const synthesis = createSynthesizer(player);
+
+      const readMethod = (text: string) => read(text, synthesis);
 
       return {
         reading: false,
-        getPlayer: () => get().player,
+        // getPlayer: () => get().player,
         setStatus: (status: boolean) => set(() => ({ reading: status })),
         getStatus: () => get().reading,
-        getSynthesizer: createSynthesizer,
-        player: createAudio(), // 播放器检测器,可以检测出当前是否有音频在播放
-        read,
+        getSynthesizer: () => get().synthesis,
+        player, // 播放器检测器,可以检测出当前是否有音频在播放
+        synthesis,
+        read: readMethod,
       };
     },
     {
@@ -87,17 +92,5 @@ const useReadStore = create<ReadStore>()(
     },
   ),
 );
-
-// const useReadStore = create<ReadStore>()(
-//   persist((set, get) => ({
-//     reading: false,
-//     getPlayer: get().player,
-//     setStatus: (status: boolean) => set(() => ({ reading: status })),
-//     getStatus: get().reading,
-//     getSynthesizer: createSynthesizer(get().player),
-//     player: createAudio(), // 播放器检测器,可以检测出当前是否有音频在播放
-//     read,
-//   })),
-// );
 
 export default useReadStore;
