@@ -33,6 +33,11 @@ ENV PROXY_URL=""
 ENV OPENAI_API_KEY=""
 ENV CODE=""
 
+ENV NEXT_PUBLIC_SIDEBAR_TITLE='AI助手'
+ENV NEXT_PUBLIC_DOCUMENT_TITLE='有AI随行'
+ENV NEXT_PUBLIC_SHOP_URL='https://shop.ez-listen.app'
+ENV NEXT_PUBLIC_SHOW_VERSION=''
+
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
