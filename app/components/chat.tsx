@@ -61,6 +61,7 @@ import { useMaskStore } from "../store/mask";
 import { useCommand } from "../command";
 import { requestAzureTTS } from "../api/common";
 import useAzureTTS from "../hooks/azureTTS";
+import useReadStore from "../store/read";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -569,7 +570,7 @@ export function Chat() {
 
   const onReadCanel = () => {
     // @ts-ignore
-    player.pause();
+    ttsPlayer.pause();
 
     console.log("player pause: ", player);
   };
