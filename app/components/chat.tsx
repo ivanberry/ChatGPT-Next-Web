@@ -415,7 +415,6 @@ export function Chat() {
   const [hitBottom, setHitBottom] = useState(true);
   const isMobileScreen = useMobileScreen();
   const navigate = useNavigate();
-  const { speaking, supported, cancel } = useSpeechSynthesis();
   const [player, speak] = useAzureTTS();
   console.log("player: ", player);
 
@@ -565,16 +564,20 @@ export function Chat() {
   const onRead = (content: string) => {
     // @ts-ignore
     speak(content);
+    console.log("player start: ", player);
   };
 
   const onReadCanel = () => {
-    console.log("player: ", player);
     // @ts-ignore
     player.pause();
 
-    // cancel();
+    console.log("player pause: ", player);
   };
 
+  const onResume = () => {
+    // @ts-ignore
+    player.resume();
+  };
   const context: RenderMessage[] = session.mask.context.slice();
 
   const accessStore = useAccessStore();
@@ -767,6 +770,12 @@ export function Chat() {
                             onClick={() => onResend(message.id ?? i)}
                           >
                             {Locale.Chat.Actions.Retry}
+                          </div>
+                          <div
+                            className={styles["chat-message-top-action"]}
+                            onClick={() => onResume()}
+                          >
+                            Resume
                           </div>
                           <div
                             className={styles["chat-message-top-action"]}

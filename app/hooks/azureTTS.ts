@@ -12,6 +12,7 @@ import {
  * @param req text to speach
  */
 export default function useAzureTTS() {
+  console.log("called");
   // @ts-ignore
   const speechConfig = SpeechConfig.fromSubscription(
     process.env.NEXT_PUBLIC_SPEECH_KEY as string,
@@ -29,6 +30,8 @@ export default function useAzureTTS() {
 
   // @ts-ignore
   const audioConfig = AudioConfig.fromSpeakerOutput(player);
+
+  // TODO: everytime will change a new instance, how to reuse it?
   const synthesizer = new SpeechSynthesizer(speechConfig, audioConfig);
 
   function speak(text: string) {
@@ -41,7 +44,7 @@ export default function useAzureTTS() {
         if (result) {
           console.log("Speech synthesis result:", result.privErrorDetails);
         }
-        synthesizer.close();
+        // synthesizer.close();
       },
       (error: any) => {
         console.error("Error during speech synthesis:", error);
