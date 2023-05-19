@@ -18,6 +18,11 @@ RUN apk update && apk add --no-cache git
 ENV OPENAI_API_KEY=""
 ENV CODE=""
 
+ENV NEXT_PUBLIC_SIDEBAR_TITLE='AI助手'
+ENV NEXT_PUBLIC_DOCUMENT_TITLE='有AI随行'
+ENV NEXT_PUBLIC_SHOP_URL='https://shop.ez-listen.app'
+ENV NEXT_PUBLIC_SHOW_VERSION=''
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -32,11 +37,6 @@ RUN apk add proxychains-ng
 ENV PROXY_URL=""
 ENV OPENAI_API_KEY=""
 ENV CODE=""
-
-ENV NEXT_PUBLIC_SIDEBAR_TITLE='AI助手'
-ENV NEXT_PUBLIC_DOCUMENT_TITLE='有AI随行'
-ENV NEXT_PUBLIC_SHOP_URL='https://shop.ez-listen.app'
-ENV NEXT_PUBLIC_SHOW_VERSION=''
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
